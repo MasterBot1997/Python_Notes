@@ -95,6 +95,7 @@ def prin_dict_menu(name_f):
         name_key = input("Ввдеите по какому параетру вы хотите вывести иформацию: \n"
                         "1 - id\n"
                         "2 - Заголовок\n"
+                        "3 - Дата\n"
                         "0 - Вернуться в меню\n")
         match name_key:
             case '1':
@@ -108,6 +109,9 @@ def prin_dict_menu(name_f):
                 print()
                 filter_user = "header"
                 prin_dict(filter_user, key_user, name_f)
+                break
+            case '3':
+                specific_sort_menu(name_f)
                 break
             case '0':
                 logging.info("Возвращение в меню")
@@ -135,6 +139,49 @@ def red_menu(name_f):
                     name_red = 2
                     redactor_data(name_red, name_f)
                     break
+                case '0':
+                    logging.info("Возвращение в меню")
+                    print("\nВы возвращаетесь в меню\n")
+                    break
+                case _:
+                    logging.warning("Пользователь ввел некоректное значение!")
+                    print("Такого варанта нет, попробуйте еще раз!")
+                    continue
+
+
+def specific_sort_menu(name_s):
+        while True:
+            # Пользователь выбирает какую информацию он хочет отредактировать
+            name_red = input("Введите номер команды как вы хотите отсортировать заметки по дате: \n"
+                            "1 - точная дата\n"
+                            "2 - Выборка за год и определенный месяц\n"
+                            "3 - Выборка за год\n"
+                            "4 - Выборка по году от и до\n"
+                            "0 - Вернуться в меню\n")
+            match name_red:
+                case '1':
+                    key_user_s = input("Введите дату через прочерк\n"
+                                 "Пример: 2023-05-01\n")
+                    filter_user_s = "data_and_time"
+                    specific_filter_date(filter_user_s, key_user_s, name_s, name_red)
+                    break
+                case '2':
+                    key_user_s = input("Введите год и мессяц через прочерк\n"
+                                 "Пример: 2023-05\n")
+                    filter_user_s = "data_and_time"
+                    specific_filter_date(filter_user_s, key_user_s, name_s, name_red)
+                    break
+                case '3':
+                    key_user_s = input("Введите год: ")
+                    filter_user_s = "data_and_time"
+                    specific_filter_date(filter_user_s, key_user_s, name_s, name_red)
+                    break
+                case '4':
+                    key_user_s = input("Введите год сначала от потом до через прочерк(Пример 1900-2000): ")
+                    filter_user_s = "data_and_time"
+                    specific_filter_date(filter_user_s, key_user_s, name_s, name_red)
+                    break
+                    
                 case '0':
                     logging.info("Возвращение в меню")
                     print("\nВы возвращаетесь в меню\n")
